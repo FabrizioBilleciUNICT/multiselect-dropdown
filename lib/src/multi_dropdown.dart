@@ -627,7 +627,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
         borderRadius: chipDecoration.borderRadius,
         color: widget.enabled
             ? chipDecoration.backgroundColor
-            : chipDecoration.backgroundColor?.withValues(alpha: 0.3),
+            : chipDecoration.backgroundColor?.withValues(alpha: 0.6),
         border: chipDecoration.border,
       ),
       padding: chipDecoration.padding,
@@ -635,8 +635,9 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(option.label, style: chipDecoration.labelStyle),
-          const SizedBox(width: 4),
-          if (widget.enabled)
+
+          if (widget.enabled) ...[
+            const SizedBox(width: 4),
             InkWell(
               onTap: () {
                 _dropdownController
@@ -649,6 +650,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                     const Icon(Icons.close, size: 16),
               ),
             ),
+          ],
         ],
       ),
     );
